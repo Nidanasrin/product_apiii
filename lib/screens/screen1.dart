@@ -5,9 +5,7 @@ import 'package:product_apiii/controller/product_controller.dart';
 import 'package:product_apiii/model/product_model.dart';
 import 'package:product_apiii/screens/screen2.dart';
 
-void main(){
-  runApp(GetMaterialApp(home: Producthome(),));
-}
+
 class Producthome extends StatelessWidget {
   final ProductController productController = Get.put(ProductController());
 
@@ -24,14 +22,14 @@ class Producthome extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }else{
-            return ListView.builder(itemCount: productController.products.length,
+            return ListView.builder(itemCount: productController.productList.length,
                 itemBuilder:  (context,index){
-              final product =ProductController.products[index];
+              final product =productController.productList[index];
                   return ListTile(
                     leading: Image.network(product.image ?? '',width: 50,height: 50,),
                     title: Text(product.title ?? ''),
                     subtitle: Text('\${product.price?'),
-                    onTap: ()=>Get.to(ProductDetails(product: product)),
+                    onTap: ()=>Get.to(ProductDetails(product)),
                       );
                 });
           }
